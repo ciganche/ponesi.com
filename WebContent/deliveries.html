@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>My orders basket</title>
+
+	<link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/custom.css" rel="stylesheet">
+</head>
+<body class="home" itemscope itemtype="http://schema.org/WebPage">
+    
+    
+    
+    <!-- SKRIPTE -->
+    <script src="frameworks/jquery-3.3.1.min.js"></script>
+    <script src="frameworks/mustache.js"></script>
+    <script src="jqueries/deliveries.js"></script>
+
+    
+
+	<div id="masthead">
+
+		<div id="site-header" role="banner">
+			<div class="container">
+				<div class="row">
+
+					<div id="branding">
+						<a class="logo" href="index.html">ponesi.com</a>
+					</div> <!-- #branding -->
+
+					<nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+						<ul class="horizontal-navigation">
+							<li class="menu-home" itemprop="url"><a href="index.html"  itemprop="name">Restaurants</a></li>
+							<li id="deliveriesMenuItem" class="menu-blog active" itemprop="url"><a href="deliveries.html" itemprop="name">Deliveries</a></li>							
+							<li  id="LogoutMenuItem" class="menu-contact" itemprop="url"><a href=""  itemprop="name">Logout</a></li>
+						</ul>
+					</nav> <!-- #main-menu -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #site-header -->
+
+		<div id="page-title">
+			<div class="container">
+				<div class="row">
+
+					<p id="welcomeSign" class="description" itemprop="description"></p>
+					<br>
+					<h1 class="entry-title" id="titlesign" itemprop="headline">Accept and manage deliveries</h1>
+
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #page-title -->
+
+	</div> <!-- #masthead -->
+
+	<main id="content" role="main">
+
+		<div class="section">
+			<div class="container">
+				<div class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+
+							<article hidden id="noOrdersToAccept" class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+										<header class="entry-header">
+											<h2 style="" class="entry-title" itemprop="headline">There are no orders to accept . . . </h2>
+										</header> <!-- .entry-header -->
+							</article> <!-- .post.summary -->	
+							
+							<ul style="list-style-type:none" id="ordersToAccept">
+						
+				
+							</ul>
+						
+							
+							<template id="orderToAcceptTemplate"> 
+								<li >
+
+									<article id="orderToAcceptLi"  class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+
+										<header style="margin-top: 1%; margin-bottom: 2%;"  class="entry-header">
+
+											<h2 id="StreetDateSign" style="margin-top: 1%; margin-bottom: 2%;" class="entry-title" itemprop="headline">Hilandarska 18 - 21.07.2021 17:53</h2>
+
+										</header> <!-- .entry-header -->
+
+
+										<div style="border-bottom: 5px solid #c00;" class="entry-summary" itemprop="articleBody">
+
+											<a style="margin-top: 1%; margin-bottom: 2%;"> Order:  </a>
+											<br>
+											<table>
+											<ul id="ordersInfo" style="margin-left: 3%;">
+												
+											</ul>
+											</table>
+
+
+											<div style="margin-top: 1%; margin-bottom: 1%;" class="entry-meta">
+
+												
+												
+												<span class="post-categories">
+													<span id="orderNote" class="updated"> Note </span>
+																				
+													<br>
+													<span id="userContact" class="updated">Contact: 0631529122</span>
+						
+													<br>
+													<span id="totalCost" class="updated">Total: 17500.00</span>
+												</span> <!-- .post-categories -->
+											
+											</div> <!-- .entry-meta -->
+
+											<a class="more button" id="acceptOrderBtn">Accept order</a>
+								
+
+							
+							
+										</div> <!-- .entry-summary -->
+
+
+									
+									</article> <!-- .post.summary -->
+
+								</li>
+							</template>
+																		
+						
+
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					
+				
+					
+					
+					<div class="one-quarter-block" role="complementary">
+					
+					<div id="vehicleSelection">
+						<h1> Select an available vehicle before accepting any orders: </h1>
+						<br>
+						<select id="vehicleSelectionCombobox" style="width: 100%; height: 40px; margin-bottom: 10%;">
+							<option value="no" disabled selected>Select vehicle</option>
+						</select>	
+					</div>	
+
+					
+						<div id="DeliveringItem" class="sidebar">
+							
+						<ul style="list-style-type:none" id="acceptedOrders">
+						
+						</ul>	
+							
+							
+							
+						<template id="acceptedOrderTemplate">	
+							<li>
+								<div class="widget" id="acceptedOrderLi">
+									<h3 id="acceptedOrderTitle" class="widget-title">Hilandarska 18</h3>
+									
+									<p id="acceptedOrderTo"> <a>To: </a> Coa Coic </p>	
+									<p id="acceptedOrderContact"> <a>Contact: </a> 0631529122 </p>
+									<p id="acceptedOrderCost"> <a>Total: </a> 17500.00 </p>
+									<a>Orders:</a>	
+										<ul id="acceptedOrdersInfo">
+										</ul>
+									<br>	
+									<p id="vehicleTaken"> <a>Vehicle taken: </a> bmw </p>	
+									
+									<a id="markAsDelivered" class="more button" style="width: 100%;  text-align: center;" id="doFiltering">Mark as delivered</a>
+					
+									<a id="markAsCancled" class="more button" style="width: 100%;  text-align: center; margin-top: 5%;" id="doFiltering">Cancel delivery</a>
+			
+										
+								</div> <!-- .widget -->
+							</li>
+						</template>
+						
+								
+						
+							
+						</div> 
+					</div> <!-- .one-quarter-block -->
+					</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .section -->
+
+	</main> <!-- #content -->
+
+
+	
+
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
+

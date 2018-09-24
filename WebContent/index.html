@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>Home - Restaurants</title>
+
+	<link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/custom.css" rel="stylesheet">
+</head>
+<body class="home" itemscope itemtype="http://schema.org/WebPage">
+    
+    
+    
+    <!-- SKRIPTE -->
+    <script src="frameworks/jquery-3.3.1.min.js"></script>
+    <script src="jqueries/homepage.js"></script>
+    <script src="frameworks/mustache.js"></script>
+
+    
+
+	<div id="masthead">
+
+		<div id="site-header" role="banner">
+			<div class="container">
+				<div class="row">
+
+					<div id="branding">
+						<a class="logo" href="index.html">ponesi.com</a>
+					</div> <!-- #branding -->
+
+					<nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+						<ul class="horizontal-navigation">
+							<li  class="menu-home active" itemprop="url"><a href="index.html"  itemprop="name">Restaurants</a></li>
+							<li id="mealsDrinks" class="menu-about" itemprop="url"><a href="articles.html" itemprop="name">Meals & Drinks</a></li>
+							<li id="LoginMenuItem" class="menu-portfolio" itemprop="url"><a href="login.html" itemprop="name">Login</a></li>
+							<li hidden id="MyProfileMenuItem" class="menu-blog" itemprop="url"><a href="" itemprop="name">My Orders</a></li>
+						    <li hidden id="HistoryMenuItem" class="menu-blog" itemprop="url"><a href="profile.html" itemprop="name">My Profile</a></li>
+							<!-- DOSTAVLJAC -->
+							<li hidden id="deliveriesMenuItem" class="menu-blog" itemprop="url"><a href="deliveries.html" itemprop="name">Deliveries</a></li>
+							<!-- /DOSTAVLJAC -->
+							
+							<!-- ADMIN -->
+							<li hidden id="manageMenuItem" class="menu-blog" itemprop="url"><a href="manageassets.html" itemprop="name">Manage Assets</a></li>
+							<!-- ADMIN -->
+							<li hidden id="LogoutMenuItem" class="menu-contact" itemprop="url"><a href=""  itemprop="name">Logout</a></li>
+						
+
+						
+						</ul>
+					</nav> <!-- #main-menu -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #site-header -->
+
+		<div id="page-title">
+			<div class="container">
+				<div class="row">
+
+					<p id="welcomeSign" class="description" itemprop="description"></p>
+					<br>
+					<h1 class="entry-title" id="titlesign" itemprop="headline">Listing restaurants</h1>
+
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #page-title -->
+
+	</div> <!-- #masthead -->
+
+	<main id="content" role="main">
+
+		<div class="section">
+			<div class="container">
+				<div class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+
+					
+						<!-- LISTA RESTORANA -->
+
+						<ul style="list-style-type:none" id="restorani">
+							
+			
+
+						</ul>
+						
+							<li hidden id="noElementsFound">
+								<article  class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+										<header class="entry-header">
+											<h2 style="" class="entry-title" itemprop="headline">No restoraunts found . . . </h2>
+										</header> <!-- .entry-header -->
+									</article> <!-- .post.summary -->
+							</li>
+						
+						<template id="restoranTemplate">
+									<li>
+
+									<article class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+
+										<header class="entry-header">
+
+											<h2 class="entry-title" itemprop="headline"><a title="Article Title" rel="bookmark" itemprop="url">{{ime}}</a></h2>
+
+											<div class="entry-meta">
+
+												<span class="post-categories">
+													<i class="fa fa-folder fa-fw"></i> <a rel="tag">{{tip_str}}</a>
+												</span> <!-- .post-categories -->
+											
+											</div> <!-- .entry-meta -->
+
+
+										</header> <!-- .entry-header -->
+
+										<div class="entry-thumbnail">
+											<a  title="Blog Post">
+												<img src="http://dummyimage.com/150x150/f3f3f3/d1d1d1.jpg&text=Thumbnail" alt="Blog Post" itemprop="image">
+											</a>
+										</div> <!-- .entry-thumbnail -->
+
+										<div class="entry-summary" itemprop="articleBody">
+
+											<p><a > {{ulica}} </a> {{broj_ulice}} </p>
+											<a class="more button" id="MenuViewingLink">View Menu</a>
+											<a class="more button" id="pinToggle" style=" text-align:center; float: right; width: 13%; ">PIN</a>
+
+										</div> <!-- .entry-summary -->
+
+									</article> <!-- .post.summary -->
+
+								</li>
+								<br>	
+						</template>
+
+
+
+
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div class="sidebar">
+
+							<div id="mojabeba">
+								<div class="search-widget widget">
+									<form class="widget-form" action="#" method="get" role="search">
+										<label>
+											<span class="screen-reader-text">Search this website:</span>
+											<input id="nameSearch" type="search" class="search-field" placeholder="Search by restaurant name ... " value="" name="search" title="Enter restaurant name" />
+										</label>
+									</form>
+								</div> <!-- .search.widget -->
+								
+								
+								<div class="search-widget widget">
+									<form class="widget-form" action="#" method="get" role="search">
+										<label>
+											<span class="screen-reader-text">Search this website:</span>
+											<input id="streetSearch" type="search" class="search-field" placeholder="Search by street name ... " value="" name="search" title="Enter street name" />
+										</label>
+									</form>
+								</div> <!-- .search.widget -->
+	
+								<div class="widget">
+									<h3 class="widget-title">Categories</h3>
+									<ul>
+										<li> <input class="selectCategorie" type="radio" name='test' value="all" checked /> <a class="selectCategorie" name="All">All</a></li>
+										<li> <input class="selectCategorie" type="radio" name='test' value="serbian"/> <a class="selectCategorie" name="Serbian">Serbian</a></li>
+										<li> <input class="selectCategorie" type="radio" name='test' value="bbq"/> <a class="selectCategorie" name="BBQ">BBQ</a></li>
+										<li> <input class="selectCategorie" type="radio" name='test' value="chinese"/> <a class="selectCategorie" name="Chinese">Chinese</a></li>
+										<li> <input class="selectCategorie" type="radio" name='test' value="indian"/> <a class="selectCategorie" name="Indian">Indian</a></li>
+										<li> <input class="selectCategorie" type="radio" name='test' value="pizza"/> <a class="selectCategorie" name="Pizza">Pizza</a></li>
+										<li> <input class="selectCategorie" type="radio" name='test' value="pastaria"/> <a class="selectCategorie" name="Pastaria">Pastaria</a></li>
+									</ul>
+								</div> <!-- .widget -->
+								
+								<a class="more button" style="width: 100%;  text-align: center" id="doFiltering">Search</a>
+						
+							</div>
+							
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							
+
+							<div class="widget">
+								<h3 class="widget-title">Check out our top 10 meals!</h3>
+								<ul id="top10">
+									
+								</ul>
+							</div> <!-- .widget -->
+
+						</div> <!-- .sidebar -->
+					</div> <!-- .one-quarter-block -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .section -->
+
+	</main> <!-- #content -->
+
+
+	
+	<footer id="footer" role="contentinfo">
+		<div class="container">
+			<div class="row">
+
+				<div class="copyright">&copy; Aleksa Krsmanović - web programming project 2018 </div>
+				<div class="attribution">Skinut template sa<a href="http://www.free-css.com" title="Web Design by Donny Burnside" target="_blank"> free-css.com</a>.</div>
+
+			</div> <!-- .row -->
+		</div> <!-- .container -->
+	</footer> <!-- #footer -->
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!--  ORIGINALAN LIST ITEM
+
+
+								<li>
+
+									<article class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+
+										<header class="entry-header">
+
+											<h2 class="entry-title" itemprop="headline"><a href="article.html" title="Article Title" rel="bookmark" itemprop="url">Article Title</a></h2>
+
+											<div class="entry-meta">
+
+												<span class="post-date">
+													<i class="fa fa-clock-o fa-fw"></i> <span class="updated">12th February 2015</span>
+												</span> 
+
+												<span class="post-author">
+													<i class="fa fa-user fa-fw"></i> Written by <span class="vcard"><a class="fn url" href="author.html">Author</a></span>
+												</span> 
+
+												<span class="post-categories">
+													<i class="fa fa-folder fa-fw"></i> <a href="blog.html" rel="tag">Category A</a>, <a href="blog.html" rel="tag">Category B</a>
+												</span>
+												<span class="post-tags">
+													<i class="fa fa-tags fa-fw"></i> <a href="blog.html" rel="tag">Tag A</a>, <a href="blog.html" rel="tag">Tag B</a>, <a href="blog.html" rel="tag">Tag C</a>
+												</span>
+
+											</div> 
+
+										</header>
+
+										<div class="entry-thumbnail">
+											<a href="article.html" title="Blog Post">
+												<img src="http://dummyimage.com/150x150/f3f3f3/d1d1d1.jpg&text=Thumbnail" alt="Blog Post" itemprop="image">
+											</a>
+										</div>
+
+										<div class="entry-summary" itemprop="articleBody">
+
+											<p>Lorem ipsum dolor sit amet, orci a faucibus, ante curabitur augue ornare nulla facilisi bibendum, tortor felis quam rutrum velit, pretium posuere placerat. Vitae ut nulla eget. Lacus sociis, eget dolor metus nam nunc leo. Tempor eget donec officia. Luctus nullam purus urna iaculis, integer dui risus, ultricies lacinia aliquet.</p>
+											<a class="more button" href="article.html">Read More</a>
+
+										</div>
+
+									</article> 
+
+								</li>
+
+
+
+
+	-->

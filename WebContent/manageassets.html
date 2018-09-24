@@ -1,0 +1,728 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>My orders basket</title>
+
+	<link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/custom.css" rel="stylesheet">
+	
+	
+</head>
+<body class="home" itemscope itemtype="http://schema.org/WebPage">
+    
+    
+    
+    <!-- SKRIPTE -->
+    <script src="frameworks/jquery-3.3.1.min.js"></script>
+    <script src="frameworks/mustache.js"></script>
+	<script src="jqueries/manageassets.js"></script>
+    
+
+	<div id="masthead">
+
+		<div id="site-header" role="banner">
+			<div class="container">
+				<div class="row">
+
+					<div id="branding">
+						<a class="logo" href="index.html">ponesi.com</a>
+					</div> <!-- #branding -->
+
+					<nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+						<ul class="horizontal-navigation">
+							<li class="menu-home" itemprop="url"><a href="index.html"  itemprop="name">Restaurants</a></li>
+							<li class="menu-about active" itemprop="url"><a href="manageassets.html" itemprop="name">Manage Assets</a></li>
+							<li  id="LogoutMenuItem" class="menu-contact" itemprop="url"><a href=""  itemprop="name">Logout</a></li>
+						</ul>
+					</nav> <!-- #main-menu -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #site-header -->
+
+		<div id="page-title">
+			<div class="container">
+				<div class="row">
+
+					<p id="welcomeSign" class="description" itemprop="description"></p>
+					<br>
+					<h1 style="width: 30%;" class="entry-title" id="titlesign" itemprop="headline">Manage: 
+						<select id=contentSelection style="height: 30px; vertical-align: middle; margin-left: 20px;">
+							<option value="restaurants">Restaurants</option>
+							<option value="artikli">Meals & Drinks</option>
+							<option value="vozila">Vehicles</option>
+							<option value="users">Users</option>
+							<option value="orders">Orders</option>
+						</select>
+					 </h1>
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #page-title -->
+
+	</div> <!-- #masthead -->
+
+	<main id="content" role="main">
+
+		<div class="section">
+			<div class="container">
+			
+			
+			
+				<!-- RESTORANI ***********************************************************-->
+				<div id="restaurantContent" class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+
+							<article  hidden id="emptyBasketSign" class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+										<header class="entry-header">
+											<h2 style="" class="entry-title" itemprop="headline">The orders basket is empty. . . </h2>
+										</header> <!-- .entry-header -->
+							</article> <!-- .post.summary -->						
+						
+						
+						<table id="restautantTable" style="width: 80%;">
+						  <tr>
+								<th> # </th>
+								<th> Name </th>
+						    	<th> Type </th>
+						  </tr>
+								
+				
+						</table>	
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div  class="sidebar">
+						
+						
+									<div hidden class="widget" id="addRestaurantDiv" >
+										<h3 id="tokensHeader" class="widget-title">Create a Restaurant</h3>
+										<ul>
+											<li><p style="margin-bottom: 1%;">Insert Name: </p> <input id="newRestoranImeInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Insert Street Name: </p> <input id="newRestoranStreetSelect" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Insert Street Number: </p> <input id="newRestoranBrojInput" min="0" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Select Type: </p> 
+												<select id="newRestoranTypeSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Type</option>
+													<option value="Serbian"> Serbian </option>
+													<option value="BBQ"> BBQ </option>
+													<option value="Chinese"> Chinese </option>
+													<option value="Indian"> Indian </option>
+													<option value="Pizza"> Pizza </option>
+													<option value="Pastaria"> Pastaria </option>
+												</select> 
+											
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="createRestaurant" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD</a>
+											</li>
+											
+											
+										</ul>
+									</div> <!-- .widget -->	
+									
+	
+									
+						           <div id="editRestaurantDiv" class="widget">
+										<h3 id="tokensHeader" class="widget-title">Edit Selected Restaurant</h3>
+										<intput id="selektovanRestoranId" type="hidden"/>
+										<ul>
+											<li><p style="margin-bottom: 1%;">Name: </p> <input id="restoranImeInput" type="text" style="height: 25px; margin-bottom: 3%;"/></li>
+											<li><p style="margin-bottom: 1%;">Street Name: </p> <input id="restoranUlicaInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Street Number: </p> <input id="restoranBrojInput" min="0" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Type: </p> 
+												<select id="restoranTipSelect" type="number" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+												    <option selected disabled value="">Select Type</option>
+													<option value="Serbian"> Serbian </option>
+													<option value="BBQ"> BBQ </option>
+													<option value="Chinese"> Chinese </option>
+													<option value="Indian"> Indian </option>
+													<option value="Pizza"> Pizza </option>
+													<option value="Pastaria"> Pastaria </option>
+												</select> 
+											
+											</li>
+											
+											<li >
+												<p style="margin-bottom: 1%;">Meals & Drinks</p>
+												
+										   	    <select id="restoranArtikli" multiple style="width: 100%;height: 85px;">
+
+											    </select>
+						
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a  id="editRestaurant" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">EDIT</a>
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="removeRestaurant" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">REMOVE</a>
+											</li>
+											
+										</ul>
+									</div> <!-- .widget -->	
+	
+								<br>
+								<br>
+								<br>
+								<br>								
+								<a id="addRestaurant" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD NEW RESTAURANT</a> 
+								
+								<br> <!-- sidebar -->
+							</div>
+						</div> <!-- .one-quarter-block -->
+
+				</div> <!-- .row -->
+
+			
+			
+			
+			
+			
+			<!-- ARTIKLI*********************************************************** -->
+			<div hidden id="artikalContent" class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+
+							<article  hidden id="emptyBasketSign" class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+										<header class="entry-header">
+											<h2 style="" class="entry-title" itemprop="headline">The orders basket is empty. . . </h2>
+										</header> <!-- .entry-header -->
+							</article> <!-- .post.summary -->						
+						
+						
+						<table id="artikalTable" style="width: 80%;">
+						  <tr>
+								<th> # </th>
+								<th> Name </th>
+						    	<th> Type </th>
+						  </tr>
+								
+				
+						</table>	
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div  class="sidebar">
+						
+						
+									<div hidden class="widget" id="addArtikalDiv" >
+										<h3 id="tokensHeader" class="widget-title">Create a Meal / Drink</h3>
+										<ul>
+											<li><p style="margin-bottom: 1%;">Insert Name: </p> <input id="newArtikalImeInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">To Restaurant: </p> 
+												
+												<select id="newArtiklRestoranSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Restaurant</option>						
+												</select> 	
+																						
+											</li>
+											<li><p style="margin-bottom: 1%;">Insert Price: </p> <input id="newArtikalCenaInput" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Insert mass or volume: </p> <input id="newArtikalGramazaInput" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Select Type: </p> 
+												<select id="newArtikalTipSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option value="Food"> Food </option>
+													<option value="Drink"> Drink </option>
+												</select> 
+											
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="createArtikal" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD</a>
+											</li>
+											
+											
+										</ul>
+									</div> <!-- .widget -->	
+									
+	
+									<!--*** EDIT ARTIKAL *** -->
+						           <div id="editArtikalDiv" class="widget">
+										<h3 id="tokensHeader" class="widget-title">Edit Selected Meal / Drink</h3>
+										<intput id="selektovanArtikalId" type="hidden"/>
+										<ul>
+											<li><p style="margin-bottom: 1%;">Name: </p> <input id="artikalImeInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Restaurant: </p> 
+												
+												<select id="artikalRestoranSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Type</option>
+												</select> 	
+																						
+											</li>
+											<li><p style="margin-bottom: 1%;">Price: </p> <input id="artikalCenaInput" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Mass or volume: </p> <input id="artikalGramazaInput" min="0" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Select Type: </p> 
+												<select id="artikalTipSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Type</option>
+													<option value="Food"> Food </option>
+													<option value="Drink"> Drink </option>
+												</select> 
+											
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="editArtikal" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">EDIT</a>
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="removeArtikal" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">REMOVE</a>
+											</li>
+											
+										</ul>
+									</div> <!-- .widget -->	
+	
+								<br>
+								<br>
+								<br>
+								<br>								
+								<a id="addArtikal" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD NEW MEAL / DRINK</a> 							
+								<br>
+							</div>
+						</div> <!-- .one-quarter-block -->
+				</div> <!-- .row -->
+			
+			
+			
+			
+			
+			
+			<!-- **********************VOZILA**************************************************** -->
+				<div hidden id="vozilaContent" class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+						
+						
+						<table id="vozilaTable" style="width: 80%;">
+						  <tr>
+								<th> # </th>
+								<th> Model </th>
+						    	<th> Type </th>
+						  </tr>
+								
+				
+						</table>	
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div  class="sidebar">
+						
+						
+									<div hidden class="widget" id="addVoziloDiv" >
+										<h3 id="tokensHeader" class="widget-title">Insert a Vehicle</h3>
+										<ul>
+											<li><p style="margin-bottom: 1%;">Insert Brand Name: </p> <input id="newVoziloBrandInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Insert Model: </p> <input id="newVoziloModelInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Select Type: </p> 
+												<select id="newVoziloTypeSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Type</option>
+													<option value="0"> Bicycle </option>
+													<option value="1"> Scooter </option>
+													<option value="2"> Car </option>
+												</select> 
+											
+											</li>
+											
+											<li><p style="margin-bottom: 1%;">Insert Registration Plate: </p> <input id="newVoziloPlateInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Insert Manufacturing Year: </p> <input id="newVoziloYearInput" min="1950" step="1" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											
+											<li>
+												<p style="margin-bottom: 1%;">Insert Note: </p> 
+												<textarea id="newVoziloNoteArea" style="height: 80px; margin-bottom: 3%;"> </textarea> 					
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="createVozilo" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD</a>
+											</li>
+											
+											
+										</ul>
+									</div> <!-- .widget -->	
+									
+	
+									
+						           <div id="editVoziloDiv" class="widget">
+										<h3 id="tokensHeader" class="widget-title">Edit Selected Vehicle</h3>
+										<intput id="selektovanoVoziloId" type="hidden"/>
+									<ul>
+											<li><p style="margin-bottom: 1%;">Brand Name: </p> <input id="VoziloBrandInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Model: </p> <input id="VoziloModelInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li>
+												<p style="margin-bottom: 1%;">Type: </p> 
+												<select id="VoziloTypeSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Type</option>
+													<option value="0"> Bicycle </option>
+													<option value="1"> Scooter </option>
+													<option value="2"> Car </option>
+												</select> 
+											
+											</li>
+											
+											<li><p style="margin-bottom: 1%;">Registration Plate: </p> <input id="VoziloPlateInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											<li><p style="margin-bottom: 1%;">Manufacturing Year: </p> <input id="VoziloYearInput" min="1950" step="1" type="number" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											
+											<li>
+												<p style="margin-bottom: 1%;">Note: </p> 
+												<textarea id="VoziloNoteArea" style="height: 80px; margin-bottom: 3%;"> </textarea> 					
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="editVozilo" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">EDIT</a>
+											</li>
+											
+										    <li>
+												<a id="removeVozilo" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">REMOVE</a>
+											</li>
+											
+										</ul>
+									</div> <!-- .widget -->	
+	
+								<br>
+								<br>
+								<br>
+								<br>								
+								<a id="addVozilo" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD NEW VEHICLE</a> 
+								
+								<br> <!-- sidebar -->
+							</div>
+						</div> <!-- .one-quarter-block -->
+
+				</div> <!-- .row -->
+		
+			
+			<!-- ************USERI ************************* -->
+			
+				<div hidden id="userContent" class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+					
+						
+						<table id="userTable" style="width: 80%;">
+						  <tr>
+								<th> # </th>
+								<th> Name </th>
+						    	<th> Type </th>
+						  </tr>
+								
+				
+						</table>	
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div  class="sidebar">
+						
+
+									
+	
+									<!--*** EDIT USER *** -->
+						           <div id="editArtikalDiv" class="widget">
+										<h3 id="tokensHeader" class="widget-title">Change User Type</h3>
+										<intput id="selektovanUser" type="hidden"/>
+										<ul>
+											<li><p style="margin-bottom: 1%;">Username: </p> <input disabled="disabled"  id="usernameInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											
+											<li><p style="margin-bottom: 1%;">Password: </p> <input disabled="disabled"  id="passwordInput" type="text" style="height: 25px; margin-bottom: 3%;"> </input> </li>
+											
+											<li>
+												<p style="margin-bottom: 1%;">User Type: </p> 
+												
+												<select id="userTypeSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Type</option>
+													<option value="0"> Customer </option>
+													<option value="1"> Delivery </option>
+													<option value="2"> Admin </option>
+												</select> 	
+																						
+											</li>
+
+											
+											<li><br></li>
+											
+											<li>
+												<a id="changeUserType" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">CHANGE TYPE</a>
+											</li>
+											
+											
+										</ul>
+									</div> <!-- .widget -->	
+							</div>
+						</div> <!-- .one-quarter-block -->
+				</div> <!-- .row -->
+				
+				
+				
+				
+				<!-- ************** ORDERS*************************************************** -->
+			<div hidden id="ordersContent" class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+						
+						
+						<table id="ordersTable" style="width: 80%;">
+						  <tr>
+								<th> # </th>
+								<th> Time & Date </th>
+						    	<th> Status </th>
+						  </tr>
+								
+				
+						</table>	
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div  class="sidebar">
+						
+						
+									<div hidden class="widget" id="addOrderDiv" >
+										<h3 id="tokensHeader" class="widget-title">Create an Order</h3>
+										<ul>
+											<li>
+												<p style="margin-bottom: 1%;">Select Recipient: </p> 
+												<select id="newOrderUserSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Recipient</option>
+												</select> 
+											</li>
+											
+											<li>
+												<p style="margin-bottom: 1%;">Select Deliverer: </p> 
+												<select id="newOrderDelivererSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Deliverer</option>
+												</select> 
+											</li>
+											
+											<li>
+												<p style="margin-bottom: 1%;">Select Vehicle: </p> 
+												<select id="newOrderVehicleSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Vehicle</option>
+												</select> 
+											</li>
+							
+											<li>
+												<p style="margin-bottom: 1%;">Meals & Drinks: </p> 					
+												<select id="newArtikliList" multiple style="width: 100%;height: 85px;">
+												</select>
+												
+											</li>
+											
+											<li> 
+												<p style="margin-bottom: 1%;"> Meal or drink: </p>
+												<select id="newArtikal" style="height: 25px; margin-bottom: 3%; width: 100%;">
+													<option selected disabled value="">Select Meal or Drink</option>
+												</select>
+											</li>
+											<li>										
+												<p style="margin-bottom: 1%;"> Quantity: </p>
+												<input id="newArtikalKvantitet" min="0" step="1" type="number" style="height: 25px; margin-bottom: 3%;"> </input>
+											</li>
+									
+											<li>
+												<a id="newAddArtikal" style="width: 45%; text-align: center;float: left;"  class="more button addToOrder" href="javascript:void(0)">+</a>
+											
+												<a id="newRemoveArtikal" style="width: 45%; text-align: center; float: right;"  class="more button addToOrder" href="javascript:void(0)">-</a>
+											</li>
+											
+											<li> </br>  </li>
+											<li></br></li>
+											<li></br></li>
+											<li>
+												<p style="margin-bottom: 1%;">Insert special request: </p> 
+												<textarea id="newOrderNote" style="height: 80px; margin-bottom: 3%;"> </textarea> 					
+											</li>
+											
+											<li><br></li>
+											<li><br></li>
+											
+											<li>
+												<a id="createOrder" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD ORDER</a>
+											</li>
+											
+											
+										</ul>
+									</div> <!-- .widget -->	
+									
+	
+									
+						           <div id="editOrderDiv" class="widget">
+										<h3 id="tokensHeader" class="widget-title">Edit Selected Order</h3>
+										<intput id="selektovanOrderId" type="hidden"/>
+										
+										
+										
+										<ul>
+											
+											<li>
+												<p style="margin-bottom: 1%;">Order Status: </p> 
+												<select id="orderStatusSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+													<option selected disabled value="">Select Status 	</option>
+													<option  value="0">Ordered</option>
+													<option  value="1">Delivering</option>
+													<option  value="2">Delivered</option>
+													<option  value="3">Cancled</option>
+												</select> 
+											</li>
+											
+											<div id="samoZaDelivering" hidden>
+												
+												<li>
+													<p style="margin-bottom: 1%;">Select Deliverer: </p> 
+													<select id="orderDelivererSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+														<option selected disabled value="">Select Deliverer</option>
+													</select> 
+												</li>
+												
+												<li>
+													<p style="margin-bottom: 1%;">Select Vehicle: </p> 
+													<select id="orderVoziloSelect" style="height: 25px; margin-bottom: 3%; width: 100%;"> 
+														<option selected disabled value="">Select Vehicle</option>
+													</select> 
+												</li>											
+											
+											</div>
+							
+											<li>
+												<p style="margin-bottom: 1%;">Meals & Drinks: </p> 					
+												<select id="artikliList" multiple style="width: 100%;height: 85px;">
+												</select>
+											</li>
+											
+											<li> 
+												<p style="margin-bottom: 1%;">Add Meal or drink: </p>
+												<select id="artikal" style="height: 25px; margin-bottom: 3%; width: 100%;">
+													<option selected disabled value="">Select Meal/Drinks</option>
+												</select>
+											</li>
+											<li>										
+												<p style="margin-bottom: 1%;">Insert Quantity: </p>
+												<input id="artikalKvantitet" min="0" step="1" type="number" style="height: 25px; margin-bottom: 3%;"> </input>
+											</li>
+									
+											<li>
+												<a id="addArtikalToOrder" style="width: 45%; text-align: center;float: left;"  class="more button addToOrder" href="javascript:void(0)">+</a>
+											
+												<a id="removeArtikalFromOrder" style="width: 45%; text-align: center; float: right;"  class="more button addToOrder" href="javascript:void(0)">-</a>
+											</li>
+											
+											<li> </br>  </li>
+											<li> </br>  </li>
+											
+											<li>										
+												<p style="margin-bottom: 1%;"> Total Cost: </p>
+												<input id="totalCostInput" min="0" type="number" disabled="disabled" style="height: 25px; margin-bottom: 3%;"> </input>
+											</li>
+											
+											<li></br></li>
+											<li></br></li>
+			
+											<li>
+												<p style="margin-bottom: 1%;">Special request: </p> 
+												<textarea id="orderNote" style="height: 80px; margin-bottom: 3%;"> </textarea> 					
+											</li>
+											
+											<li><br></li>
+											<li><br></li>
+											
+											<li>
+												<a id="editOrder" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">EDIT ORDER</a>
+											</li>
+											
+											<li><br></li>
+											
+											<li>
+												<a id="removeOrder" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">REMOVE ORDER</a>
+											</li>
+											
+											
+										</ul>
+									</div> <!-- .widget -->	
+	
+								<br>
+								<br>
+								<br>
+								<br>								
+								<a id="addOrder" style="width: 100%; text-align: center;"  class="more button addToOrder" href="javascript:void(0)">ADD NEW ORDER</a> 
+								
+								<br> <!-- sidebar -->
+							</div>
+						</div> <!-- .one-quarter-block -->
+
+				</div> <!-- .row -->
+				
+				
+				
+				
+				
+				
+			
+				</div> <!-- .container -->		
+			
+		</div> <!-- .section -->
+
+	</main> <!-- #content -->
+
+
+	
+	<footer id="footer" >
+		<div class="container" >
+			<div class="row" style="margin-bottom: 0%; padding-bottm: 0%;">
+
+				<div class="copyright">&copy; Aleksa Krsmanović - web programming project 2018 </div>
+				<div class="attribution">Skinut template sa<a href="http://www.free-css.com" title="Web Design by Donny Burnside" target="_blank"> free-css.com</a>.</div>
+
+			</div> <!-- .row -->
+		</div> <!-- .container -->
+	</footer> <!-- #footer -->
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>Login</title>
+
+	<link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/custom.css" rel="stylesheet">
+</head>
+<body class="contact" itemscope itemtype="http://schema.org/ContactPage">
+
+    <!-- SKRIPTE -->
+    <script src="frameworks/jquery-3.3.1.min.js"></script>
+    <script src="jqueries/login.js"></script>
+    <script src="frameworks/mustache.js"></script>
+
+
+	<div id="masthead">
+
+		<div id="site-header" role="banner">
+			<div class="container">
+				<div class="row">
+
+					<div id="branding">
+						<a class="logo" href="index.html">ponesi.com</a>
+					</div> <!-- #branding -->
+
+					<nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+						<ul class="horizontal-navigation">
+							<li class="menu-home" itemprop="url"><a href="index.html" title="Home" itemprop="name">Restaurants</a></li>
+							<li class="menu-about" itemprop="url"><a href="articles.html" title="About" itemprop="name">Meals & Drinks</a></li>
+							<li class="menu-contact active" itemprop="url"><a href="login.html" title="Contact" itemprop="name">Login</a></li>
+						</ul>
+					</nav> <!-- #main-menu -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #site-header -->
+
+
+	</div> <!-- #masthead -->
+
+	<main id="content" role="main">
+
+		<div class="section">
+			<div class="container">
+				<div class="row">
+
+					<div class="content" itemprop="" itemtype="http://schema.org/ContactPoint">
+					
+						<div class="entry-content">
+
+							<div class="half-block" style="margin: 0 25%;">
+
+								<div class="contact-form">
+								
+										<br>
+								        <br>
+
+									<form id="login_form">
+
+										<input id="login_username" name="name" type="text" required="required" placeholder="Your Username">
+										<input id="login_password" type="password" required="required" placeholder="Your Password">
+										<br>
+										<input onclick="login()" id="login_submit" style="margin: 0 44%;" class="button" name="submit" type="submit" value="LOGIN">
+	
+										<br>
+										<br>
+										<br>
+
+									
+										
+									</form>
+
+								</div> <!-- .contact-form -->
+
+							</div> <!-- .half-block -->
+							
+
+						</div> <!-- .entry-content -->
+
+					</div> <!-- .content -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .section -->
+
+	</main> <!-- #content -->
+
+	<div id="prefooter" role="complementary">
+		<div class="container">
+			<div class="row">
+			<form>
+				<h4 style="color: black; margin:0% 0% 13% 0%" class="widget-title">You don't have an account? - Sign up!</h4>
+
+				<div class="one-third-block">
+
+					<p style="margin-bottom: 0;  margin-top: 7%;">Choose an username:</p>
+				    <input id="signUpUsername" name="name" type="text" required="required" >
+				    
+				    <p style="margin-bottom: 0; margin-top: 7%; ">Choose an password:</p>
+				    <input id="signUpPassword" name="name" type="text" required="required" >
+				    
+
+
+				</div> <!-- .one-third-block -->
+
+				<div class="one-third-block">
+
+
+				    <p style="margin-bottom: 0; margin-top: 7%; ">Enter name:</p>
+				    <input id="signUpName" name="name" type="text" required="required" >
+				    
+				   	<p style="margin-bottom: 0; margin-top: 7%;">Enter lastname:</p>
+				    <input id="signUpLastname" name="name" type="text" required="required" >
+
+
+				</div> <!-- .one-third-block -->
+
+				<div class="one-third-block">
+
+					<p style="margin-bottom: 0;  margin-top: 7%;">Enter email:</p>
+				    <input id="signUpEmail" name="email" type="text" required="required" >
+				    
+
+					<p style="margin-bottom: 0;  margin-top: 7%;">Enter phone number:</p>
+				    <input id="signUpPhone" type="text" required="required" >
+				    
+					
+
+				</div> <!-- .one-third-block -->
+				
+				
+			<input onclick="signUp()" id="submit" style="margin: 7% 30% 0% 46%;" class="button"  type="submit" value="Sign up">
+				
+			</form>
+			</div> <!-- .row -->
+		</div> <!-- .container -->
+	</div> <!-- #prefooter -->
+	
+	<footer id="footer" role="contentinfo">
+		<div class="container">
+			<div class="row">
+
+				<div class="copyright">&copy; Aleksa Krsmanović - web programming project 2018 </div>
+				<div class="attribution">Skinut template sa<a href="http://www.free-css.com" title="Web Design by Donny Burnside" target="_blank"> free-css.com</a>.</div>
+
+			</div> <!-- .row -->
+		</div> <!-- .container -->
+	</footer> <!-- #footer -->
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>Profile</title>
+
+	<link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/custom.css" rel="stylesheet">
+</head>
+<body class="home" itemscope itemtype="http://schema.org/WebPage">
+    
+    
+    
+    <!-- SKRIPTE -->
+    <script src="frameworks/jquery-3.3.1.min.js"></script>
+    <script src="jqueries/profile.js"></script>
+    <script src="frameworks/mustache.js"></script>
+
+
+    
+
+	<div id="masthead">
+
+		<div id="site-header" role="banner">
+			<div class="container">
+				<div class="row">
+
+					<div id="branding">
+						<a class="logo" href="index.html">ponesi.com</a>
+					</div> <!-- #branding -->
+
+					<nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+						<ul class="horizontal-navigation">
+							<li class="menu-home" itemprop="url"><a href="index.html"  itemprop="name">Restaurants</a></li>
+							<li class="menu-about" itemprop="url"><a href="articles.html" itemprop="name">Meals & Drinks</a></li>
+							<li  id="MyProfileMenuItem" class="menu-blog " itemprop="url"><a href="MyOrders.html" itemprop="name">My Orders</a></li>
+							<li  id="HistoryMenuItem" class="menu-blog active" itemprop="url"><a href="profile.html" itemprop="name">My Profile</a></li>
+							<li  id="LogoutMenuItem" class="menu-contact" itemprop="url"><a href=""  itemprop="name">Logout</a></li>
+						</ul>
+					</nav> <!-- #main-menu -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #site-header -->
+
+		<div id="page-title">
+			<div class="container">
+				<div class="row">
+
+					<p id="welcomeSign" class="description" itemprop="description"></p>
+					<br>
+					<h1 class="entry-title" id="titlesign" itemprop="headline">Ordering history & pinned restaurants</h1>
+
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- #page-title -->
+
+	</div> <!-- #masthead -->
+
+	<main id="content" role="main">
+
+		<div class="section">
+			<div class="container">
+				<div class="row">
+
+					<div class="three-quarters-block">
+						<div class="content">
+
+					
+						<!-- LISTA RESTORANA -->
+
+						<ul style="list-style-type:none" id="historyItems">
+				
+						</ul>
+						
+						
+							<template id="historyItemTemplate">
+								<li>
+
+									<article  class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+
+										<header style="margin-top: 1%; margin-bottom: 2%;"  class="entry-header">
+
+											<h2 style="margin-top: 1%; margin-bottom: 2%;" class="entry-title" itemprop="headline">{{dateTime}}<a title="Article Title" rel="bookmark" itemprop="url"></a></h2>
+
+										</header> <!-- .entry-header -->
+
+
+										<div style="border-bottom: 5px solid red;" class="entry-summary" itemprop="articleBody">
+
+											<a style="margin-top: 1%; margin-bottom: 2%;"> Order:  </a>
+											<br>
+											<table>
+											<ul id="ordersInfo" style="margin-left: 3%;">
+												
+											</ul>
+											</table>
+
+
+											<div style="margin-top: 1%; margin-bottom: 1%;" class="entry-meta">
+
+												<span class="post-categories">
+													<i></i> <span id="totalCost" class="updated">Total: 17500.00</span>
+												</span> <!-- .post-categories -->
+											
+											</div> <!-- .entry-meta -->
+
+
+
+										</div> <!-- .entry-summary -->
+
+
+									
+									</article> <!-- .post.summary -->
+
+								</li>		
+
+							</template>
+							
+							<article  hidden id="noHistoryFound" class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+										<header class="entry-header">
+											<h2 style="" class="entry-title" itemprop="headline">You haven't taken any orders yet . . . </h2>
+										</header> <!-- .entry-header -->
+							</article> <!-- .post.summary -->							
+							
+						
+
+
+						</div> <!-- .content -->
+					</div> <!-- .three-quarters-block -->
+					
+					<div class="one-quarter-block" role="complementary">
+						<div class="sidebar">
+
+							
+							<br>
+							<br>
+							<br>
+						
+							<div class="widget">
+								<h3 class="widget-title">Pinned restaurants</h3>
+								<ul id="pinnedRestaurants">
+								
+								
+								</ul>
+							</div> <!-- .widget -->
+
+						</div> <!-- .sidebar -->
+					</div> <!-- .one-quarter-block -->
+
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .section -->
+
+	</main> <!-- #content -->
+
+
+	
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
+
