@@ -1,5 +1,7 @@
 # FoodDeliveryManagmentSystem-FullStackProject 
-#### Language: Java / JavaScript + JQuery
+#### Language: Java / JavaScript
+
+#### Frameworks: JAX-RS, JQuery, mustache.js
 
 #### Date: 15.7.2018
 
